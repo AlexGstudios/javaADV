@@ -1,21 +1,29 @@
 public class Person implements Npc {
 
+    int hitPoints;
+    String name;
+
+    public Person(String name){
+
+        this.hitPoints = (int) (Math.random()*10)+1;
+        this.name = name;
+    }
     @Override
     public String name() {
-        // TODO Auto-generated method stub
-        return null;
+
+        return this.name;
     }
 
     @Override
     public int hitPoints() {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        return this.hitPoints;
     }
 
     @Override
     public void show() {
-        // TODO Auto-generated method stub
-
+        
+        System.out.println(name() + " who has " + hitPoints() + " hitpoints");
     }
     
 }

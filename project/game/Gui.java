@@ -32,12 +32,14 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
 
         //Returnera det senaste commitade kommandot
         public String getCommand(){
+            String room = this.command;
             if (this.gotCommand){
+                this.gotCommand = false;
                 System.out.println(this.command);
+                room = this.command;
                 return this.command;
             }
-            return null;
-
+            return room;
         }
         //Här kan man updatera respektive fält:
         public void setShowRoom(String roomDescription){
@@ -83,7 +85,7 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
             ActionListener inputListener = e -> {
                 this.command = input.getText();
                 this.gotCommand = true;
-                System.out.println(this.command);};
+            };
 
             input.addActionListener(inputListener);
 
