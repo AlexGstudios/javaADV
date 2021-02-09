@@ -1,13 +1,24 @@
-public class Player {
-    
-    public String street(){
-        
-        return "Street \nThis is an empty street.";
+public class Player{
+
+    GameGui gui = Game.gui;
+
+    public void firstRoom(){
+
+        gui.setShowRoom(Game.rooms[0].show(0));
     }
 
-    public String tavern(){
+    public void secondRoom(){
 
-        return "Tavern \nThis is an empty Tavern.";
+        gui.setShowRoom(Game.rooms[1].show(1));
     }
-    
+
+    public void thirdRoom(){
+
+        gui.setShowRoom(Game.rooms[2].show(2));
+    }
+
+    public void fourthRoom(){
+
+        gui.setShowRoom(Game.rooms[3].show(3));
+    }
 }

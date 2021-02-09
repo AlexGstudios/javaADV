@@ -1,6 +1,6 @@
 public interface Npc {
     
-    public String name();
-    public int hitPoints();
-    public void show();
+    public String getName();
+    public int getHitPoints();
+    public void getShow();
 }

@@ -8,18 +8,18 @@ public class Orc implements Npc {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         
         return "Orc";
     }
 
     @Override
-    public int hitPoints() {
+    public int getHitPoints() {
         return this.hitPoints;
     }
 
     @Override
-    public void show() {
+    public void getShow() {
         
         System.out.println("This is an Orc " + this.hitPoints);
     }

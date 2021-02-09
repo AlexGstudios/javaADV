@@ -1,29 +1,38 @@
 public class Person implements Npc {
 
-    int hitPoints;
-    String name;
+    private final int INVENTORYMAXSIZE = 1;
+
+    private int hitPoints;
+    private String name;
+    private Inventory persInv;
 
     public Person(String name){
 
         this.hitPoints = (int) (Math.random()*10)+1;
         this.name = name;
+        this.persInv = new Inventory(INVENTORYMAXSIZE);
     }
     @Override
-    public String name() {
+    public String getName() {
 
         return this.name;
     }
 
     @Override
-    public int hitPoints() {
+    public int getHitPoints() {
         
         return this.hitPoints;
     }
 
-    @Override
-    public void show() {
+    public void addPersonInv(GameObject object){
         
-        System.out.println(name() + " who has " + hitPoints() + " hitpoints");
+        this.persInv.addItem(object);
+    }
+
+    @Override
+    public void getShow() {
+        
+        
     }
     
 }
