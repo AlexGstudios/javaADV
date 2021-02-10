@@ -1,0 +1,24 @@
+kvar att göra.
+
+INVENTORY:
+
+ / *när saker bytt plats så skall gui uppdatera.
+
+PLAYER:
+
+*ska kunna släppa saker.
+*ska kunna plocka upp saker.
+
+NPC:
+
+*ska kunna vandra, ett rum i taget.
+*ska kunna plocka upp saker.
+*ska kunna släppa saker.
+
+LÅS/BOX/CHEST:
+
+*spelaren ska kunna låsa upp boxes/chests.
+*spelaren ska kunna plocka upp saker ur boxes/chests.
+
+DOOR:
+*spelaren ska kunna öppna en dörr och vinna.

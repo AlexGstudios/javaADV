@@ -16,21 +16,23 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
         private JTextArea commands;
         private JTextField input;
         private JTextArea inventory;
+        private JTextArea info;
+        private JTextArea playerInventory;
         private String command;
-        private boolean gotCommand;
         private JButton button;
 
-        public String[] comm = {"Level 1: moves you to Level 1\n",
+        public String[] comm = {"Level 1: moves you to Level 1.  ",
                                 "Level 2: moves you to Level 2\n",
-                                "Level 3: moves you to Level 3\n",
+                                "Level 3: moves you to Level 3.  ",
                                 "Level 4: moves you to Level 4\n",
                                 "Exit: exits the game"};
 
+        // sets up the main gui
         public GameGui(){
-            this.gotCommand = false;
             this.command = "";
             this.setTitle("Game");
-            this.setSize(800, 600);
+            this.setSize(1200, 800);
+            this.setLocation(500, 250);
             this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setUpElements();
             setUpPanel();
@@ -41,11 +43,7 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
 
         //Returnera det senaste commitade kommandot
         public String getCommand(){
-            if (this.gotCommand){
-                this.gotCommand = false;
-                System.out.println(this.command);
-                return this.command;
-            }
+
             return this.command;
         }
         //Här kan man updatera respektive fält:
@@ -58,8 +56,8 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
         public void setShowInventory(String[] i){
             this.inventory.setText(Arrays.toString(i));
         }
-        public void setFullInventory(){
-            this.input.setText("This inventory is full.");
+        public void setInfoText(String str){
+            this.info.setText(str);
         }
 
         //Add person to room
@@ -69,11 +67,6 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
 
 //Nedantåenda spaghetti är inte vacker...
 
-
-        public void gotCommand(){
-            this.gotCommand = false;
-        }
-
         private void setUpPanel(){
             this.panel.add(showPersons);
             this.panel.add(showRoom);
@@ -81,22 +74,25 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
             this.panel.add(inventory);
             this.panel.add(button);
             this.panel.add(commands);
+            this.panel.add(info);
+            this.panel.add(playerInventory);
         }
         private void setUpElements(){
-            this.panel = new JPanel(new GridLayout(4,3));
+            this.panel = new JPanel(new GridLayout(4,4));
             this.showRoom = new JTextArea("Room: ");
             this.showPersons = new JTextArea("Persons");
             this.inventory = new JTextArea("Inventory");
             this.input = new JTextField("Give command");
             this.commands = new JTextArea("Commands:\n" + comm[0] + comm[1] + comm[2] + comm[3] + comm[4]);
+            this.info = new JTextArea("Info");
+            this.playerInventory = new JTextArea("Player inventory");
             this.showPersons.setEditable(false);
             this.showRoom.setEditable(false);
             this.inventory.setEditable(false);
 
             ActionListener inputListener = e -> {
                 this.command = input.getText();
-                this.gotCommand = true;
-                this.getCommand();
+                Game.move(this.getCommand());
             };
 
             input.addActionListener(inputListener);

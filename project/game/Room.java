@@ -1,7 +1,7 @@
 public class Room {
 
     GameGui gui = Game.gui;
-    Inventory inv;
+    Inventory roomInv;
 
     private static final int INVENTORYSIZE = 7;
 
@@ -14,27 +14,31 @@ public class Room {
         this.roomNumber = roomValue;
         this.roomName = name;
         this.roomDisc = roomDiscription;
-        inv = new Inventory(INVENTORYSIZE);
+        roomInv = new Inventory(INVENTORYSIZE);
     }
 
+    // gets the room number
     public int getRoomNumber(){
         
         return this.roomNumber;
     }
 
+    // gets the room name
     public String getRoomName(){
 
         return roomName;
     }
 
+    // adds items to the rooms inventory
     public void addToInventory(GameObject object){
 
-        this.inv.addItem(object);
+        this.roomInv.addItem(object);
     }
 
-    public String show(int index){
+    // updates the gui with the roms discription and inventory
+    public String show(){
 
-        gui.setShowInventory(Game.rooms[index].inv.getGameObjectNames()); // korta ner inv.get.. ?
+        gui.setShowInventory(roomInv.getGameObjectNames());
         return roomDisc;
     }
 }

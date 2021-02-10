@@ -2,7 +2,7 @@ public class Game {
     
     static GameGui gui = new GameGui();
     Room room;
-    Player player = new Player();
+    static Player player = new Player(5);
     NpcMovement npcMove = new NpcMovement();
 
     Thread npcThread = new Thread(npcMove);
@@ -12,7 +12,7 @@ public class Game {
     
     static Room[] rooms = new Room[numOfRooms];
     
-    Boolean isTrue = true;
+    static Boolean isTrue = true;
     
     
     public Game(){
@@ -22,31 +22,9 @@ public class Game {
         player.firstRoom();
         
         npcThread.start();
-
-        while (isTrue) {
-            switch (gui.getCommand()) {
-                case "Level 1":
-                    player.firstRoom();
-                    break;
-                case "Level 2":
-                    player.secondRoom();
-                    break;
-                case "Level 3":
-                    player.thirdRoom();
-                    break;
-                case "Level 4":
-                    player.fourthRoom();
-                    break;
-                case "Exit":
-                    gui.dispose();
-                    isTrue = false;
-                    break;
-                default:
-                    break; 
-            }
-        }
     }
 
+    // Setting up the rooms
     public void createRooms(int roomNum){
 
         String[] roomNames = {"Level 1", "Level 2", "Level 3", "Level 4"};
@@ -58,7 +36,7 @@ public class Game {
                                 "Ladder", "Toolbox", "Mop", "Flashlight", "Wrench",
                                 "Chest", "Door", "", "", ""};
 
-        Boolean[] objectPickable = {false, false, false, false, false,
+        Boolean[] objectPick =      {false, false, false, false, false,
                                     false, false, true, false, false,
                                     false, false, false, false, false,
                                     false, false, false, false, false};
@@ -72,7 +50,7 @@ public class Game {
 
             for (int j = from; j < stop; j++) {
                 
-                GameObject object = new GameObject(objectName[j], objectPickable[j]);
+                GameObject object = new GameObject(objectName[j], objectPick[j]);
                 room.addToInventory(object);
             }
 
@@ -80,6 +58,43 @@ public class Game {
             stop = stop + 5;
 
             rooms[i] = room;
+        }
+    }
+
+    //The Main switch for movement, "trade" and to pick up items in rooms
+    public static void move(String command){
+
+        switch (command) {
+            case "Level 1":
+                player.firstRoom();
+                break;
+            case "Level 2":
+                player.secondRoom();
+                break;
+            case "Level 3":
+                player.thirdRoom();
+                break;
+            case "Level 4":
+                player.fourthRoom();
+                break;
+            case "Trade John":
+                Trade john = new Trade(0);
+                break;
+            case "Trade Våd":
+                Trade vad = new Trade(1);
+                break;
+            case "Trade Snäll":
+                Trade snall = new Trade(2);
+                break;
+            case "Trade Bongo":
+                Trade bongo = new Trade(3);
+                break;
+            case "Exit":
+                gui.dispose();
+                isTrue = false;
+                break;
+            default:
+                break; 
         }
     }
 }

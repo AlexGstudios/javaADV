@@ -2,23 +2,28 @@ public class NpcMovement implements Runnable {
 
     GameGui gui = Game.gui;
 
-    String[] names = { "John P Bollbirth", "Våd Olofsson", "Snäll Goodguy", "Bongo" };
+    static String[] names = { "John P Bollbirth", "Våd Olofsson", "Snäll Goodguy", "Bongo" };
 
     Boolean isTrue = true;
 
     int[] willMove = { 0, 0, 0, 0 };
 
     Person person;
-    Person[] persons = new Person[names.length];
+    static Person[] persons = new Person[names.length];
 
-    @Override
-    public void run() {
+    // creates the npc's
+    public NpcMovement(){
 
         for (int i = 0; i < names.length; i++) {
 
             person = new Person(names[i]);
             persons[i] = person;
         }
+    }
+
+    // runs the npc thread and checks if the npc will move
+    @Override
+    public void run() {
 
         while (isTrue) {
 
@@ -32,7 +37,7 @@ public class NpcMovement implements Runnable {
 
             if (willMove[0] == 4) {
 
-                gui.setShowPersons(persons[0].getName());
+                gui.setShowPersons(persons[0].getShow());
             }
             if (willMove[1] == 4) {
 
@@ -46,7 +51,7 @@ public class NpcMovement implements Runnable {
 
                 // Bongo ska byta rum
             }
-                Thread.sleep(5000);
+                Thread.sleep(50000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
