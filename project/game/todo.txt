@@ -6,13 +6,13 @@ INVENTORY:
 
 PLAYER:
 
-*ska kunna släppa saker.
-*ska kunna plocka upp saker.
+*ska kunna släppa saker. -- måste testas
+*ska kunna plocka upp saker. -- måste testas
 
 NPC:
 
 *ska kunna vandra, ett rum i taget.
-*ska kunna plocka upp saker.
+*ska kunna plocka upp saker. 
 *ska kunna släppa saker.
 
 LÅS/BOX/CHEST:

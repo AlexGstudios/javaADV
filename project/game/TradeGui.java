@@ -71,6 +71,7 @@ public class TradeGui extends JFrame {
             this.tradeCommand = tradeInput.getText();
             Trade.tradeSwitch(this.tradeCommand);
             // lägg till ett sätt att stänga fönstret vid klick
+            super.dispose();
         };
 
         tradeInput.addActionListener(aL);

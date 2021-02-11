@@ -11,7 +11,7 @@ public class Player {
     private int playerPos = 0;
     private int roomNumber = 1;
 
-    private GameObject playerStart = new GameObject("shoe", true);
+    private GameObject playerStart = new GameObject("Shoe", true);
 
     public Player(int itemCount){
 
@@ -26,6 +26,11 @@ public class Player {
         String concat = Arrays.toString(playerInv.getGameObjectNames());
         
         return concat;
+    }
+
+    public int getPlayerPosition(){
+
+        return this.playerPos - 1;
     }
 
     // gets the players inventory

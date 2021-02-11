@@ -24,7 +24,6 @@ public class Trade{
     // updates the gui to show the npc's inventory
     public void setNpc(){
 
-        System.out.println(npcID);
         tradeGui.setTradePerson(persons[npcID].getShow());
     }
 
@@ -50,6 +49,7 @@ public class Trade{
                 break;
             case "Give Key":
                 persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(),  "Key");
+                Game.player.getPlayerInventory().removeItem(Game.player.getPlayerInventory(), "Key");
                 break;
             case "Give Shoe":
                 persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(), "Shoe");
@@ -57,6 +57,7 @@ public class Trade{
                 break;
             case "Give Note":
                 persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(), "Note");
+                Game.player.getPlayerInventory().removeItem(Game.player.getPlayerInventory(), "Note");
                 break;
         
             default:

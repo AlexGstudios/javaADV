@@ -17,6 +17,11 @@ public class Room {
         roomInv = new Inventory(INVENTORYSIZE);
     }
 
+    public Inventory getRoomInventory(){
+
+        return this.roomInv;
+    }
+
     // gets the room number
     public int getRoomNumber(){
         

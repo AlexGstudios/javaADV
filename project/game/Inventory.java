@@ -1,6 +1,10 @@
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import org.graalvm.compiler.api.replacements.Snippet.NonNullParameter;
 
 public class Inventory {
 
@@ -47,22 +51,16 @@ public class Inventory {
     // switch items between player/npc and player room
     public void switchItems(Inventory giving, String name){
 
-        GameObject[] itemChanged = new GameObject[1];
-
-        GameObject object = findObject(giving, name);
+        GameObject itemChanged;
 
         List<GameObject> givingList = Arrays.asList(giving.items);
 
         itemChanged = givingList
                             .stream()
-                            .map(x -> {
-                                if (x == object) {
-                                    return object;
-                                }
-                                return x;
-                            })
-                            .toArray(GameObject[]::new);
-        addItem(itemChanged[0]);
+                            .filter(Objects::nonNull)
+                            .filter(x -> x.getName().equals(name))
+                            .findFirst().orElse(null);
+        addItem(itemChanged);
     }
 
     // removes the item from inventory
@@ -107,23 +105,17 @@ public class Inventory {
     // goes through the inventory and finds the object with the given (String) name
     public GameObject findObject(Inventory giving, String name){
 
-        String[] nameArr = {name};
+        GameObject foundItem;
 
         List<GameObject> searchInventory = Arrays.asList(giving.items);
 
-        GameObject[] foundItem = new GameObject[1];
-
         foundItem = searchInventory
                                 .stream()
-                                .map(x -> {
-                                    if (giving.getGameObjectNames().equals(nameArr)) {
-                                        return x;
-                                    }
-                                    return x;
-                                })
-                                .toArray(GameObject[]::new);
+                                .filter(Objects::nonNull)
+                                .filter(x -> x.getName().equals(name))
+                                .findFirst().orElse(null);
 
-        return foundItem[0];
+        return foundItem;
     }
 
     // goes through to check if the invientory is full

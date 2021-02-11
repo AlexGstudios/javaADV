@@ -89,6 +89,26 @@ public class Game {
             case "Trade Bongo":
                 Trade bongo = new Trade(3);
                 break;
+            case "Pick Up Note":
+                player.getPlayerInventory().switchItems(rooms[player.getPlayerPosition()].getRoomInventory(), "Note");
+                rooms[player.getPlayerPosition()].getRoomInventory().removeItem(rooms[player.getPlayerPosition()].getRoomInventory(), "Note");
+                break;
+            case "Pick Up Key":
+                player.getPlayerInventory().switchItems(rooms[player.getPlayerPosition()].getRoomInventory(), "Key");
+                rooms[player.getPlayerPosition()].getRoomInventory().removeItem(rooms[player.getPlayerPosition()].getRoomInventory(), "Key");
+                break;
+            case "Drop Note":
+                rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Note");
+                player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Note");
+                break;
+            case "Drop Key":
+                rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Key");
+                player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Key");
+                break;
+            case "Drop Shoe":
+                rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Shoe");
+                player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Shoe");
+                break;
             case "Exit":
                 gui.dispose();
                 isTrue = false;
