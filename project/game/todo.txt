@@ -4,11 +4,6 @@ INVENTORY:
 
  / *när saker bytt plats så skall gui uppdatera.
 
-PLAYER:
-
-*ska kunna släppa saker. -- måste testas
-*ska kunna plocka upp saker. -- måste testas
-
 NPC:
 
 *ska kunna vandra, ett rum i taget.

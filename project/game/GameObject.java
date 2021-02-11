@@ -14,4 +14,9 @@ public class GameObject {
 
         return name;
     }
+
+    public Boolean getPick(){
+
+        return this.pick;
+    }
 }
