@@ -4,7 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class NpcMovement implements Runnable {
 
     GameGui gui = Game.gui;
-    Key personKey;
+    Key personKey = Game.getPersonKey();
 
     static String[] names = { "John P Bollbirth", "Våd Olofsson", "Bongo" };
     String[] personsArr = new String[3];
@@ -19,8 +19,6 @@ public class NpcMovement implements Runnable {
 
     // creates the npc's
     public NpcMovement(){
-
-        this.personKey = new Key("Chest Key", true);
 
         for (int i = 0; i < names.length; i++) {
 
@@ -60,17 +58,12 @@ public class NpcMovement implements Runnable {
     // sets which room the npc's are in
     public void personMovement(int[] willMove){
 
-        if (willMove[0] == 4) {
-
-            personRoom[0] = ThreadLocalRandom.current().nextInt(0, 4);
-        }
-        if (willMove[1] == 4) {
-
-            personRoom[1] = ThreadLocalRandom.current().nextInt(0, 4);
-        }
-        if (willMove[2] == 4) {
-
-            personRoom[2] = ThreadLocalRandom.current().nextInt(0, 4);
+        for (int i = 0; i < willMove.length; i++) {
+            
+            if (willMove[i] == 4) {
+    
+                personRoom[i] = ThreadLocalRandom.current().nextInt(0, 4);
+            }
         }
     }
     
@@ -92,95 +85,36 @@ public class NpcMovement implements Runnable {
     // the npc's picks up and drop the item chest key
     public void dropAndPickUp(int[] willMove){
 
-        if (willMove[0] == 2) {
+        for (int k = 0; k < willMove.length; k++) {
             
-            int randomPickUp = ThreadLocalRandom.current().nextInt(0, 2);
-
-            if (randomPickUp == 1 && persons[0].getPersonInventory().getIfObjectNull() != null) {
+            if (willMove[k] == 2) {
                 
-                String[] roomInvArr = Game.rooms[personRoom[0]].getRoomInventory().getGameObjectNames();
-
-                for (int i = 0; i < roomInvArr.length; i++) {
-                    if (roomInvArr[i] != "Chest Key") {
-                        
-                        if (i + 1 == roomInvArr.length) {
+                int randomPickUp = ThreadLocalRandom.current().nextInt(0, 2);
+    
+                if (randomPickUp == 1 && persons[k].getPersonInventory().getIfObjectNull() != null) {
+                    
+                    String[] roomInvArr = Game.rooms[personRoom[k]].getRoomInventory().getGameObjectNames();
+    
+                    for (int i = 0; i < roomInvArr.length; i++) {
+                        if (roomInvArr[i] != "Chest Key") {
                             
-                            Game.rooms[personRoom[0]].getRoomInventory().switchItems(persons[0].getPersonInventory(), "Chest Key");
-                            persons[0].getPersonInventory().removeItem(persons[0].getPersonInventory(), "Chest Key");
+                            if (i + 1 == roomInvArr.length) {
+                                
+                                Game.rooms[personRoom[k]].getRoomInventory().switchItems(persons[k].getPersonInventory(), "Chest Key");
+                                persons[k].getPersonInventory().removeItem(persons[k].getPersonInventory(), "Chest Key");
+                            }
                         }
                     }
-                }
-            }else if (randomPickUp == 0) {
-
-                String[] roomInvArr = Game.rooms[personRoom[0]].getRoomInventory().getGameObjectNames();
-
-                for (int i = 0; i < roomInvArr.length; i++) {
-                    if (roomInvArr[i] == "Chest Key") {
-                        
-                        persons[0].getPersonInventory().switchItems(Game.rooms[personRoom[0]].getRoomInventory(), "Chest Key");
-                        Game.rooms[personRoom[0]].getRoomInventory().removeItem(persons[0].getPersonInventory(), "Chest Key");
-                    }
-                }
-            }
-        }
-        if (willMove[1] == 2) {
-            
-            int randomPickUp = ThreadLocalRandom.current().nextInt(0, 2);
-
-            if (randomPickUp == 1 && persons[1].getPersonInventory().getIfObjectNull() != null) {
-                
-                String[] roomInvArr = Game.rooms[personRoom[1]].getRoomInventory().getGameObjectNames();
-
-                for (int i = 0; i < roomInvArr.length; i++) {
-                    if (roomInvArr[i] != "Chest Key") {
-                       
-                        if (i + 1 == roomInvArr.length) {
+                }else if (randomPickUp == 0) {
+    
+                    String[] roomInvArr = Game.rooms[personRoom[k]].getRoomInventory().getGameObjectNames();
+    
+                    for (int i = 0; i < roomInvArr.length; i++) {
+                        if (roomInvArr[i] == "Chest Key") {
                             
-                            Game.rooms[personRoom[1]].getRoomInventory().switchItems(persons[1].getPersonInventory(), "Chest Key");
-                            persons[1].getPersonInventory().removeItem(persons[1].getPersonInventory(), "Chest Key");
+                            persons[k].getPersonInventory().switchItems(Game.rooms[personRoom[k]].getRoomInventory(), "Chest Key");
+                            Game.rooms[personRoom[k]].getRoomInventory().removeItem(persons[k].getPersonInventory(), "Chest Key");
                         }
-                    }
-                }
-            }else if (randomPickUp == 0) {
-
-                String[] roomInvArr = Game.rooms[personRoom[1]].getRoomInventory().getGameObjectNames();
-
-                for (int i = 0; i < roomInvArr.length; i++) {
-                    if (roomInvArr[i] == "Chest Key") {
-                        
-                        persons[1].getPersonInventory().switchItems(Game.rooms[personRoom[1]].getRoomInventory(), "Chest Key");
-                        Game.rooms[personRoom[1]].getRoomInventory().removeItem(persons[1].getPersonInventory(), "Chest Key");
-                    }
-                }
-            }
-        }
-        if (willMove[2] == 2) {
-            
-            int randomPickUp = ThreadLocalRandom.current().nextInt(0, 2);
-
-            if (randomPickUp == 1 && persons[2].getPersonInventory().getIfObjectNull() != null) {
-                
-                String[] roomInvArr = Game.rooms[personRoom[2]].getRoomInventory().getGameObjectNames();
-
-                for (int i = 0; i < roomInvArr.length; i++) {
-                    if (roomInvArr[i] != "Chest Key") {
-                        
-                        if (i + 1 == roomInvArr.length) {
-                            
-                            Game.rooms[personRoom[2]].getRoomInventory().switchItems(persons[2].getPersonInventory(), "Chest Key");
-                            persons[2].getPersonInventory().removeItem(persons[2].getPersonInventory(), "Chest Key");
-                        }
-                    }
-                }
-            }else if (randomPickUp == 0) {
-
-                String[] roomInvArr = Game.rooms[personRoom[2]].getRoomInventory().getGameObjectNames();
-
-                for (int i = 0; i < roomInvArr.length; i++) {
-                    if (roomInvArr[i] == "Chest Key") {
-                        
-                        persons[2].getPersonInventory().switchItems(Game.rooms[personRoom[2]].getRoomInventory(), "Chest Key");
-                        Game.rooms[personRoom[2]].getRoomInventory().removeItem(persons[2].getPersonInventory(), "Chest Key");
                     }
                 }
             }

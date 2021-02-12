@@ -1,9 +1,0 @@
-kvar att göra.
-
-LÅS/BOX/CHEST:
-
-*spelaren ska kunna låsa upp boxes/chests.
-*spelaren ska kunna plocka upp saker ur boxes/chests.
-
-DOOR:
-*spelaren ska kunna öppna en dörr och vinna.

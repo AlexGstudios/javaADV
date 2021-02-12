@@ -1,17 +1,19 @@
-public class Door {
+public class Door extends GameObject{
     
-    String name;
+    String objectName;
+    Boolean pickUp;
     int doorID;
 
-    public Door(String name, int doorID){
+    public Door(String objectName, Boolean pickUp, int doorID){
+        super(objectName, pickUp);
 
-        this.name = name;
+        this.objectName = objectName;
         this.doorID = doorID;
     }
 
     public String doorName(){
 
-        return this.name;
+        return this.objectName;
     }
 
     public int getDoorID(){

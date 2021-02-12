@@ -3,11 +3,17 @@ public class Game {
     static GameGui gui = new GameGui();
     Room room;
     static Player player = new Player(5);
-    NpcMovement npcMove = new NpcMovement();
+    NpcMovement npcMove;
 
-    Thread npcThread = new Thread(npcMove);
+    Thread npcThread;
 
-    
+    static Container chest;
+    Key masterKey;
+    static Key personKey;
+    Door door;
+
+    static String[] winning = {"You've won the game!!"};
+
     static int numOfRooms = 4;
     
     static Room[] rooms = new Room[numOfRooms];
@@ -16,7 +22,16 @@ public class Game {
     
     
     public Game(){
-        
+
+        this.masterKey = new Key("Master", true);
+        personKey = new Key("Chest Key", true);
+        chest = new Container("Chest", false, 2, personKey.getKeyID());
+        this.door = new Door("Door", false, masterKey.getKeyID());
+
+        npcMove = new NpcMovement();
+
+        npcThread = new Thread(npcMove);
+
         createRooms(numOfRooms);
         
         player.firstRoom();
@@ -34,12 +49,12 @@ public class Game {
         String[] objectName = { "Chair", "Box", "Sofa", "TV", "Lamp",
                                 "Drawer", "Bed", "Note", "Art picture", "Crack",
                                 "Ladder", "Toolbox", "Mop", "Flashlight", "Wrench",
-                                "Chest", "Door", "", "", ""};
+                                "Window", "Table", "Owen", "Frying pan", "Spatchula"};
 
         Boolean[] objectPick =      {false, false, false, false, false,
                                     false, false, true, false, false,
                                     false, false, false, false, false,
-                                    false, false, false, false, false};
+                                    false, false, false, false, false,};
 
         int from = 0;
         int stop = 5;
@@ -58,6 +73,45 @@ public class Game {
             stop = stop + 5;
 
             rooms[i] = room;
+        }
+        rooms[3].addToInventory(chest);
+        rooms[3].addToInventory(door);
+        chest.addToInventory(masterKey);
+    }
+
+    public static void tryOpenChest(){
+
+        String[] playerInvArr = player.getPlayerInventory().getGameObjectNames();
+
+        for (int i = 0; i < playerInvArr.length; i++) {
+            
+            if (playerInvArr[i] == "Chest Key" && chest.getcontainerID() == personKey.getKeyID()) {
+
+                    Trade chest = new Trade();
+
+                    
+            }else{
+
+                gui.setInfoText("Can not open without Chest Key");
+            }
+        }
+    }
+
+    public static void openDoor(){
+
+        String[] playerInvArr = player.getPlayerInventory().getGameObjectNames();
+
+        for (int i = 0; i < playerInvArr.length; i++) {
+            
+            if (playerInvArr[i] == "Master" && chest.getcontainerID() == personKey.getKeyID()) {
+
+                    gui.setShowInventory(winning);
+                    gui.setPlayerInventory(winning[0]);
+                    gui.setShowRoom(winning[0]);
+            }else{
+
+                gui.setInfoText("Can not open without Chest Key");
+            }
         }
     }
 
@@ -106,6 +160,12 @@ public class Game {
                 rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Shoe");
                 player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Shoe");
                 break;
+            case "Open Chest":
+                tryOpenChest();
+                break;
+            case "Open Door":
+                openDoor();
+                break;
             case "Exit":
                 gui.dispose();
                 isTrue = false;
@@ -113,5 +173,10 @@ public class Game {
             default:
                 break; 
         }
+    }
+
+    public static Key getPersonKey(){
+
+        return personKey;
     }
 }

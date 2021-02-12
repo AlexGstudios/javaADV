@@ -2,8 +2,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Key extends GameObject {
 
-    String objectName;
-    int keyID;
+    private String objectName;
+    private int keyID;
     
     public Key(String objectName, Boolean pickUp) {
         super(objectName, pickUp);

@@ -2,10 +2,19 @@ public class Trade{
     
     static TradeGui tradeGui;
     static Person[] persons;
+    static Container chest;
 
     private static int npcID;
 
     // starts the new gui window
+    public Trade(){
+
+        chest = Game.chest;
+        tradeGui = new TradeGui();
+        setChest();
+        setPlayer();
+    }
+    
     public Trade(int personID){
 
         persons = NpcMovement.persons;
@@ -19,6 +28,11 @@ public class Trade{
     public static int getID(){
 
         return npcID;
+    }
+
+    public void setChest(){
+
+        tradeGui.setTradePerson(Game.chest.getShow());
     }
 
     // updates the gui to show the npc's inventory
@@ -41,9 +55,9 @@ public class Trade{
                 Game.player.getPlayerInventory().switchItems(persons[getID()].getPersonInventory(), "Chest Key");
                 persons[getID()].getPersonInventory().removeItem(persons[getID()].getPersonInventory(), "Chest Key");
                 break;
-            case "Take Shoe":
-                Game.player.getPlayerInventory().switchItems(persons[getID()].getPersonInventory(), "Shoe");
-                persons[getID()].getPersonInventory().removeItem(persons[getID()].getPersonInventory(), "Shoe");
+            case "Take Master Key":
+                Game.player.getPlayerInventory().switchItems(Game.chest.getContInventory(), "Master");
+                Game.chest.getContInventory().removeItem(Game.chest.getContInventory(), "Master");
                 break;
             case "Take Note":
                 Game.player.getPlayerInventory().switchItems(persons[getID()].getPersonInventory(), "Note");
@@ -53,9 +67,9 @@ public class Trade{
                 persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(),  "Chest Key");
                 Game.player.getPlayerInventory().removeItem(Game.player.getPlayerInventory(), "Chest Key");
                 break;
-            case "Give Shoe":
-                persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(), "Shoe");
-                Game.player.getPlayerInventory().removeItem(Game.player.getPlayerInventory(), "Shoe");
+            case "Give Master Key":
+                persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(), "Master");
+                Game.player.getPlayerInventory().removeItem(Game.player.getPlayerInventory(), "Master");
                 break;
             case "Give Note":
                 persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(), "Note");
