@@ -119,54 +119,54 @@ public class Game {
     public static void move(String command){
 
         switch (command) {
-            case "Level 1":
+            case "level 1":
                 player.firstRoom();
                 break;
-            case "Level 2":
+            case "level 2":
                 player.secondRoom();
                 break;
-            case "Level 3":
+            case "level 3":
                 player.thirdRoom();
                 break;
-            case "Level 4":
+            case "level 4":
                 player.fourthRoom();
                 break;
-            case "Trade John":
+            case "trade john":
                 Trade john = new Trade(NpcMovement.persons[0].getID());
                 break;
-            case "Trade Våd":
+            case "trade våd":
                 Trade vad = new Trade(NpcMovement.persons[1].getID());
                 break;
-            case "Trade Bongo":
+            case "trade bongo":
                 Trade bongo = new Trade(NpcMovement.persons[2].getID());
                 break;
-            case "Pick Up Note":
+            case "pick up note":
                 player.getPlayerInventory().switchItems(rooms[player.getPlayerPosition()].getRoomInventory(), "Note");
                 rooms[player.getPlayerPosition()].getRoomInventory().removeItem(rooms[player.getPlayerPosition()].getRoomInventory(), "Note");
                 break;
-            case "Pick Up Chest Key":
+            case "pick up chest key":
                 player.getPlayerInventory().switchItems(rooms[player.getPlayerPosition()].getRoomInventory(), "Chest Key");
                 rooms[player.getPlayerPosition()].getRoomInventory().removeItem(rooms[player.getPlayerPosition()].getRoomInventory(), "Chest Key");
                 break;
-            case "Drop Note":
+            case "drop note":
                 rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Note");
                 player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Note");
                 break;
-            case "Drop Chest Key":
+            case "drop chest key":
                 rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Chest Key");
-                player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Key");
+                player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Chest Key");
                 break;
-            case "Drop Shoe":
+            case "drop shoe":
                 rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Shoe");
                 player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Shoe");
                 break;
-            case "Open Chest":
+            case "open chest":
                 tryOpenChest();
                 break;
-            case "Open Door":
+            case "open door":
                 openDoor();
                 break;
-            case "Exit":
+            case "exit":
                 gui.dispose();
                 isTrue = false;
                 break;

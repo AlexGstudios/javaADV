@@ -21,11 +21,14 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
         private String command;
         private JButton button;
 
-        public String[] comm = {"Level 1: moves you to Level 1.  ",
-                                "Level 2: moves you to Level 2\n",
-                                "Level 3: moves you to Level 3.  ",
-                                "Level 4: moves you to Level 4\n",
-                                "Exit: exits the game"};
+        public String[] comm = {"Level 1: moves you to Level 1",
+                                "\nLevel 2: moves you to Level 2",
+                                "\nLevel 3: moves you to Level 3",
+                                "\nLevel 4: moves you to Level 4",
+                                "\nTrade <Name> to trade person",
+                                "\nDrop/Pick Up <Item> to pick up",
+                                "\nOpen <Item> to open",
+                                "\nExit: exits the game"};
 
         // sets up the main gui
         public GameGui(){
@@ -86,7 +89,7 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
             this.showPersons = new JTextArea("Persons");
             this.inventory = new JTextArea("Inventory");
             this.input = new JTextField("Give command");
-            this.commands = new JTextArea("Commands:\n" + comm[0] + comm[1] + comm[2] + comm[3] + comm[4]);
+            this.commands = new JTextArea("Commands:\n" + Arrays.toString(comm));
             this.info = new JTextArea("Info");
             this.playerInventory = new JTextArea("Player inventory");
             this.showPersons.setEditable(false);
@@ -95,7 +98,7 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
 
             ActionListener inputListener = e -> {
                 this.command = input.getText();
-                Game.move(this.getCommand());
+                Game.move(this.getCommand().toLowerCase());
             };
 
             input.addActionListener(inputListener);

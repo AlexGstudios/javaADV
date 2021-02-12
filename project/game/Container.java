@@ -33,7 +33,7 @@ public class Container extends GameObject {
         return this.containerInv;
     }
 
-    // adds items to the rooms inventory
+    // adds items to the Container inventory
     public void addToInventory(GameObject object){
 
         this.containerInv.addItem(object);

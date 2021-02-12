@@ -41,7 +41,7 @@ public class NpcMovement implements Runnable {
 
             try {
             willMove[0] = (int) (Math.random() * 10) + 1;
-            willMove[1] = (int) (Math.random() * 10) + 1;
+            willMove[1] = (int) (Math.random() * 100) + 1;
             willMove[2] = (int) (Math.random() * 10) + 1;
 
             personMovement(willMove);

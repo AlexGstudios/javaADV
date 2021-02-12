@@ -1,20 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+
 import javax.swing.WindowConstants;
 
 public class TradeGui extends JFrame {
-
-    // Person[] tradePersons = NpcMovement.persons;
-    // Player tradePlayerInventory = Game.player;
 
     private JPanel tradePanel;
     private JTextArea tradePerson;
     private JTextArea tradePlayer;
     private JTextField tradeInput;
     private String tradeCommand;
+    private JTextArea tradeComm;
     private JButton tradeButton;
 
+    String[] tradeCommands = {"Take <Item> takes the item from whom or what you are trading",
+                            "\n Give <Item> gives the item to whom or what you are trading"};
 
     public TradeGui(){
 
@@ -55,22 +57,22 @@ public class TradeGui extends JFrame {
         this.tradePanel.add(tradePlayer);
         this.tradePanel.add(tradeInput);
         this.tradePanel.add(tradeButton);
+        this.tradePanel.add(tradeComm);
     }
 
     // sets up the content in all the fields
     public void setUp(){
 
-        this.tradePanel = new JPanel(new GridLayout(2,6));
+        this.tradePanel = new JPanel(new GridLayout(3,6));
         this.tradePerson = new JTextArea("Npc inventory");
         this.tradePlayer = new JTextArea("Player inventory");
         this.tradeInput = new JTextField("Enter what you want to trade here.");
-        // addera ett fält med commands som spelaren ska använda
+        this.tradeComm = new JTextArea(Arrays.toString(tradeCommands));
 
         ActionListener aL = e -> {
 
-            this.tradeCommand = tradeInput.getText();
+            this.tradeCommand = tradeInput.getText().toLowerCase();
             Trade.tradeSwitch(this.tradeCommand);
-            // lägg till ett sätt att stänga fönstret vid klick
             super.dispose();
         };
 
