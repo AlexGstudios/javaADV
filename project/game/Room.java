@@ -40,10 +40,9 @@ public class Room {
         this.roomInv.addItem(object);
     }
 
-    // updates the gui with the roms discription and inventory
+    // updates the gui with the roms discription
     public String show(){
 
-        gui.setShowInventory(roomInv.getGameObjectNames());
         return roomDisc;
     }
 }

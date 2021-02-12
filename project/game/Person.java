@@ -7,12 +7,19 @@ public class Person implements Npc {
     private int hitPoints; // might be added as feature if there is time
     private String name;
     private Inventory persInv;
+    private int ID;
 
-    public Person(String name){
+    public Person(String name, int ID){
 
         this.hitPoints = (int) (Math.random()*10)+1; // might be added as feature if there is time
         this.name = name;
         this.persInv = new Inventory(INVENTORYMAXSIZE);
+        this.ID = ID;
+    }
+
+    public int getID(){
+
+        return this.ID;
     }
 
     // gets the npc's inventory
@@ -45,9 +52,8 @@ public class Person implements Npc {
     @Override
     public String getShow() {
         
-        String concat = "" + getName() + "\n" + Arrays.toString(persInv.getGameObjectNames());
+        String concat = "" + getName() + "\n" + Arrays.toString(persInv.getGameObjectNames()) + "\n";
         
         return concat;
     }
-    
 }

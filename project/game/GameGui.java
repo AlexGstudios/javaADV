@@ -59,6 +59,9 @@ Snygga gärna till/gör ett eget. Men tänk på att gör GUI:s INTE är ett kurs
         public void setInfoText(String str){
             this.info.setText(str);
         }
+        public void setPlayerInventory(String str){
+            this.playerInventory.setText(str);
+        }
 
         //Add person to room
         public void setPerson(Person p){

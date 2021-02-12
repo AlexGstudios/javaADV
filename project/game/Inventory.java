@@ -16,6 +16,17 @@ public class Inventory {
         this.inventorySize = itemCount;
     }
 
+    public GameObject getIfObjectNull(){
+
+        for (int i = 0; i < items.length; i++) {
+            
+            if (items[i] == null) {
+                return items[i];
+            }
+        }
+        return items[0];
+    }
+
     // sets inventory
     public void setInventory(GameObject[] obj){
 

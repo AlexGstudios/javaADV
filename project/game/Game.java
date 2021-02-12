@@ -78,31 +78,28 @@ public class Game {
                 player.fourthRoom();
                 break;
             case "Trade John":
-                Trade john = new Trade(0);
+                Trade john = new Trade(NpcMovement.persons[0].getID());
                 break;
             case "Trade Våd":
-                Trade vad = new Trade(1);
-                break;
-            case "Trade Snäll":
-                Trade snall = new Trade(2);
+                Trade vad = new Trade(NpcMovement.persons[1].getID());
                 break;
             case "Trade Bongo":
-                Trade bongo = new Trade(3);
+                Trade bongo = new Trade(NpcMovement.persons[2].getID());
                 break;
             case "Pick Up Note":
                 player.getPlayerInventory().switchItems(rooms[player.getPlayerPosition()].getRoomInventory(), "Note");
                 rooms[player.getPlayerPosition()].getRoomInventory().removeItem(rooms[player.getPlayerPosition()].getRoomInventory(), "Note");
                 break;
-            case "Pick Up Key":
-                player.getPlayerInventory().switchItems(rooms[player.getPlayerPosition()].getRoomInventory(), "Key");
-                rooms[player.getPlayerPosition()].getRoomInventory().removeItem(rooms[player.getPlayerPosition()].getRoomInventory(), "Key");
+            case "Pick Up Chest Key":
+                player.getPlayerInventory().switchItems(rooms[player.getPlayerPosition()].getRoomInventory(), "Chest Key");
+                rooms[player.getPlayerPosition()].getRoomInventory().removeItem(rooms[player.getPlayerPosition()].getRoomInventory(), "Chest Key");
                 break;
             case "Drop Note":
                 rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Note");
                 player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Note");
                 break;
-            case "Drop Key":
-                rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Key");
+            case "Drop Chest Key":
+                rooms[player.getPlayerPosition()].getRoomInventory().switchItems(player.getPlayerInventory(), "Chest Key");
                 player.getPlayerInventory().removeItem(player.getPlayerInventory(), "Key");
                 break;
             case "Drop Shoe":

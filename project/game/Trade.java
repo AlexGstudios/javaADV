@@ -37,8 +37,9 @@ public class Trade{
     public static void tradeSwitch(String tradeCommand){
 
         switch (tradeCommand) {
-            case "Take Key":
-                Game.player.getPlayerInventory().switchItems(persons[getID()].getPersonInventory(), "Key");
+            case "Take Chest Key":
+                Game.player.getPlayerInventory().switchItems(persons[getID()].getPersonInventory(), "Chest Key");
+                persons[getID()].getPersonInventory().removeItem(persons[getID()].getPersonInventory(), "Chest Key");
                 break;
             case "Take Shoe":
                 Game.player.getPlayerInventory().switchItems(persons[getID()].getPersonInventory(), "Shoe");
@@ -46,10 +47,11 @@ public class Trade{
                 break;
             case "Take Note":
                 Game.player.getPlayerInventory().switchItems(persons[getID()].getPersonInventory(), "Note");
+                persons[getID()].getPersonInventory().removeItem(persons[getID()].getPersonInventory(), "Note");
                 break;
-            case "Give Key":
-                persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(),  "Key");
-                Game.player.getPlayerInventory().removeItem(Game.player.getPlayerInventory(), "Key");
+            case "Give Chest Key":
+                persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(),  "Chest Key");
+                Game.player.getPlayerInventory().removeItem(Game.player.getPlayerInventory(), "Chest Key");
                 break;
             case "Give Shoe":
                 persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(), "Shoe");
