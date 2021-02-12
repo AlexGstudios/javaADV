@@ -55,7 +55,7 @@ public class Trade{
                 Game.player.getPlayerInventory().switchItems(persons[getID()].getPersonInventory(), "Chest Key");
                 persons[getID()].getPersonInventory().removeItem(persons[getID()].getPersonInventory(), "Chest Key");
                 break;
-            case "take master key":
+            case "take master":
                 Game.player.getPlayerInventory().switchItems(Game.chest.getContInventory(), "Master");
                 Game.chest.getContInventory().removeItem(Game.chest.getContInventory(), "Master");
                 break;
@@ -67,7 +67,7 @@ public class Trade{
                 persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(),  "Chest Key");
                 Game.player.getPlayerInventory().removeItem(Game.player.getPlayerInventory(), "Chest Key");
                 break;
-            case "give master key":
+            case "give master":
                 persons[getID()].getPersonInventory().switchItems(Game.player.getPlayerInventory(), "Master");
                 Game.player.getPlayerInventory().removeItem(Game.player.getPlayerInventory(), "Master");
                 break;

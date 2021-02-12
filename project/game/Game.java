@@ -110,7 +110,7 @@ public class Game {
                     gui.setShowRoom(winning[0]);
             }else{
 
-                gui.setInfoText("Can not open without Chest Key");
+                gui.setInfoText("Can not open without Master Key");
             }
         }
     }
